@@ -38,8 +38,7 @@ def draw_bars(array, x_offset, y_offset, width, height, indices, highlight_color
     max_array_value = max(array)
     for idx, val in enumerate(array):
         x = x_offset + idx * bar_width
-        # Adjusted bar_height calculation to leave space for numbers
-        bar_height = int((val / max_array_value) * (height - 130))  # Subtracted more to add space
+        bar_height = int((val / max_array_value) * (height - 100))  # Adjusted height
         y = y_offset + (height - bar_height)
         color = BAR_COLOR
 
@@ -50,8 +49,7 @@ def draw_bars(array, x_offset, y_offset, width, height, indices, highlight_color
         pygame.draw.rect(WINDOW, color, (x, y, bar_width - 2, bar_height))
         # Draw value below bar
         text = FONT.render(str(val), True, TEXT_COLOR)
-        # Added more pixels to y position to prevent overlap
-        text_rect = text.get_rect(center=(x + bar_width // 2, y + bar_height + 15))
+        text_rect = text.get_rect(center=(x + bar_width // 2, y + bar_height + 5))
         WINDOW.blit(text, text_rect)
 
 # Draw comparison text
@@ -91,7 +89,7 @@ class BubbleSortVisualizer:
             # First Bubble Sort implementation
             for i in range(n):
                 for j in range(n - i - 1):
-                    steps.append(('compare', j, j+1, arr.copy()))
+                    steps.append(('compare', j, j+1))
                     if arr[j] > arr[j+1]:
                         arr[j], arr[j+1] = arr[j+1], arr[j]
                         steps.append(('swap', j, j+1, arr.copy()))
@@ -99,7 +97,7 @@ class BubbleSortVisualizer:
             # Second Bubble Sort implementation
             for i in range(n - 1):
                 for j in range(i + 1, n):
-                    steps.append(('compare', i, j, arr.copy()))
+                    steps.append(('compare', i, j))
                     if arr[i] > arr[j]:
                         arr[i], arr[j] = arr[j], arr[i]
                         steps.append(('swap', i, j, arr.copy()))
@@ -112,14 +110,13 @@ class BubbleSortVisualizer:
             if action[0] == 'compare':
                 self.highlight_indices = [action[1], action[2]]
                 self.highlight_color = COMPARISON_COLOR
-                self.comparison_result = self.array[action[1]] < self.array[action[2]]
+                val1 = self.array[action[1]]
+                val2 = self.array[action[2]]
+                self.comparison_result = val1 < val2
             elif action[0] == 'swap':
-                self.array = action[3]
                 self.highlight_indices = [action[1], action[2]]
                 self.highlight_color = SWAP_COLOR
-                # Keep comparison result from last comparison
-            else:
-                self.highlight_indices = []
+                self.array = action[3]
                 self.comparison_result = None
         else:
             self.finished = True
@@ -130,23 +127,21 @@ class BubbleSortVisualizer:
         if self.current_step > 0:
             self.current_step -= 1
             # Rebuild array from initial state up to current step
-            arr = self.original_array.copy()
+            self.array = self.original_array.copy()
             for i in range(self.current_step + 1):
                 action = self.steps[i]
                 if action[0] == 'swap':
-                    arr = action[3]
-            self.array = arr
+                    self.array = action[3]
             action = self.steps[self.current_step]
             if action[0] == 'compare':
                 self.highlight_indices = [action[1], action[2]]
                 self.highlight_color = COMPARISON_COLOR
-                self.comparison_result = self.array[action[1]] < self.array[action[2]]
+                val1 = self.array[action[1]]
+                val2 = self.array[action[2]]
+                self.comparison_result = val1 < val2
             elif action[0] == 'swap':
                 self.highlight_indices = [action[1], action[2]]
                 self.highlight_color = SWAP_COLOR
-                # Keep comparison result from last comparison
-            else:
-                self.highlight_indices = []
                 self.comparison_result = None
             self.finished = False
         elif self.current_step == 0:
