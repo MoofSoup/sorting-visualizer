@@ -4,6 +4,8 @@ import random
 
 # Initialize Pygame
 pygame.init()
+# Enable key repeating
+pygame.key.set_repeat(200, 50)  # (delay, interval) in milliseconds
 
 # Screen dimensions
 WIDTH, HEIGHT = 1200, 750
@@ -211,8 +213,8 @@ def main():
                     left_visualizer.next_step()      # E for next step (Next) - Left Visualizer
                 if event.key == pygame.K_a:
                     right_visualizer.previous_step() # A for previous step (Back) - Right Visualizer
-                if event.key == pygame.K_w:
-                    right_visualizer.next_step()     # W for next step (Next) - Right Visualizer
+                if event.key == pygame.K_d:
+                    right_visualizer.next_step()     # D for next step (Next) - Right Visualizer
 
         # Draw Visualizations
         left_visualizer.draw()
