@@ -2,7 +2,8 @@
 
 A side-by-side visual comparison of two different implementations of the Bubble Sort algorithm using Python and Pygame.
 
-*Image Description: A screenshot of the Bubble Sort Visualizer showing two sets of bars representing arrays being sorted side by side. Each bar's height corresponds to its value, and the bars being compared are highlighted. Below the bars are controls for navigating through the sorting steps.*
+
+![Bubble Sort Visualizer Screenshot](images/visualizer_screenshot.png "Bubble Sort Visualizer in action")
 
 ## Table of Contents
 
@@ -109,9 +110,7 @@ bubble-sort-visualizer/
 
 ### Visualizer Screenshot
 
-*Image Description: A screenshot of the Bubble Sort Visualizer displaying two implementations side by side with highlighted bars and comparison expressions.*
-
-*Note: Replace visualizer_screenshot.png with your actual image file. Ensure the image is placed in the images/ directory.*
+![Bubble Sort Visualizer Screenshot](images/visualizer_screenshot.png "Bubble Sort Visualizer in action")
 
 ## License
 
