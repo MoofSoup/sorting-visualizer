@@ -204,6 +204,15 @@ def main():
                     array = generate_array()
                     left_visualizer = BubbleSortVisualizer(array, 50, 50, WIDTH // 2 - 100, HEIGHT - 300, implementation=1)
                     right_visualizer = BubbleSortVisualizer(array, WIDTH // 2 + 50, 50, WIDTH // 2 - 100, HEIGHT - 300, implementation=2)
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    left_visualizer.previous_step()  # Q for previous step (Back) - Left Visualizer
+                if event.key == pygame.K_e:
+                    left_visualizer.next_step()      # E for next step (Next) - Left Visualizer
+                if event.key == pygame.K_a:
+                    right_visualizer.previous_step() # A for previous step (Back) - Right Visualizer
+                if event.key == pygame.K_w:
+                    right_visualizer.next_step()     # W for next step (Next) - Right Visualizer
 
         # Draw Visualizations
         left_visualizer.draw()
