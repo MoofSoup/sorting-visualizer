@@ -3,7 +3,7 @@
 A side-by-side visual comparison of two different implementations of the Bubble Sort algorithm using Python and Pygame.
 
 
-![Bubble Sort Visualizer Screenshot](images/visualizer_screenshot.png "Bubble Sort Visualizer in action")
+<img src="images/visualizer_screenshot.png" width="500" alt="Bubble Sort Visualizer Screenshot">
 
 ## Table of Contents
 
